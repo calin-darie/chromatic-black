@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<title>Chromatic Black Settings</title>
+<link rel="stylesheet" type="text/css" href="chromaticBlack.css"></link>
+<link rel="stylesheet" type="text/css" href="popup.css"></link>
+<script src="chromas.js"></script>
+<script src="common.js"></script>
+<script src="popup.js"></script>
+</head>
+
+<body>
+  <form id="subcontrols">
+    <fieldset>
+      <legend>Chroma for <strong id="site"></strong>: </legend>
+			<ul id="chromas">
+			
+				<li>
+					<input type="radio" name="chroma" id="chroma-dark-background-shifted-hues-320deg" value="dark-background-shifted-hues-320deg">
+					<label for="chroma-dark-background-shifted-hues-320deg"> Dark background, shifted hues, low contrast.</label>
+				</li>
+			
+				<li>
+					<input type="radio" name="chroma" id="chroma-dark-background-original-hues" value="dark-background-original-hues">
+					<label for="chroma-dark-background-original-hues"> Dark background, original hues.</label>
+				</li>
+			
+				<li>
+					<input type="radio" name="chroma" id="chroma-dark-background-inverted-hues" value="dark-background-inverted-hues">
+					<label for="chroma-dark-background-inverted-hues"> Dark background, inverted hues.</label>
+				</li>
+			
+				<li>
+					<input type="radio" name="chroma" id="chroma-original-hues-low-contrast" value="original-hues-low-contrast">
+					<label for="chroma-original-hues-low-contrast"> Original hues, low contrast.</label>
+				</li>
+			
+				<li>
+					<input type="radio" name="chroma" id="chroma-original-background-and-colors" value="original-background-and-colors">
+					<label for="chroma-original-background-and-colors"> Original background and colors.</label>
+				</li>
+			
+			</ul>
+      <span id="defaultMarker"> [default]</span>
+			<input type="checkbox" id="always-use-default-chroma"/> 
+			<label for="always-use-default-chroma">Always use the default chroma for this site.</label>
+  </fieldset>
+  <button id="make_default">Make this chroma default</button>
+  </form>
+</body>
+</html>
+
+

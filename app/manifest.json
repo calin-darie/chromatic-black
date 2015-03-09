@@ -1,0 +1,28 @@
+{
+   "background": {
+      "scripts": [ "chromas.js", "common.js", "background.js" ]
+   },
+   "browser_action": {
+      "default_icon": "img/chromaticBlack-128.png",
+      "default_popup": "popup.html",
+      "default_title": "Chromatic Black"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "css": [ "chromaticBlack.css"],
+      "js": [ "chromaticBlack.js" ],
+      "matches": [ "<all_urls>" ], 
+      "run_at": "document_start"
+   } ],
+   "description": "Light text on dark background for all websites. Saves your eyes from the strain of letting too much light in.",
+   "icons": {
+      "128": "img/chromaticBlack-128.png",
+      "16": "img/chromaticBlack-16.png",
+      "48": "img/chromaticBlack-48.png"
+   },
+   "manifest_version": 2,
+   "minimum_chrome_version": "37",
+   "name": "Chromatic Black",
+   "permissions": [ "<all_urls>", "tabs" ],
+   "version": "0.0"
+}
