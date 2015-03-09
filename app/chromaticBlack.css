@@ -1,0 +1,152 @@
+﻿@media screen{
+	html:not([nested-document=true]), 
+	html:not([nested-document=true]) body {
+		min-height:100%;
+	}
+
+	html:not([chroma]){
+	  -webkit-filter: invert() hue-rotate(140deg) contrast(80%);
+	}
+	
+		/*chroma:dark-background-shifted-hues-320deg*/
+		html[chroma="dark-background-shifted-hues-320deg"]:not([nested-document=true]) {
+			-webkit-filter: invert(100%) hue-rotate(140deg) contrast(80%);
+		}
+		
+		html[chroma="dark-background-shifted-hues-320deg"] [style*="background"]:empty:not(input):not(textarea),
+		html[chroma="dark-background-shifted-hues-320deg"] :before[style*="background"],
+		html[chroma="dark-background-shifted-hues-320deg"] :after[style*="background"],
+		html[chroma="dark-background-shifted-hues-320deg"] img,
+		html[chroma="dark-background-shifted-hues-320deg"] video,
+		html[chroma="dark-background-shifted-hues-320deg"] object[type="application/x-shockwave-flash"],
+		html[chroma="dark-background-shifted-hues-320deg"] embed[type="application/x-shockwave-flash"],
+		html[chroma="dark-background-shifted-hues-320deg"] body[data-player-size=fullscreen] {
+			-webkit-filter: hue-rotate(220deg) contrast(125%) invert(100%);
+		}
+
+		html[chroma="dark-background-shifted-hues-320deg"] dt>img[src$="png"]:not([style*="background"]),
+		html[chroma="dark-background-shifted-hues-320deg"] dt>img[src$="svg"]:not([style*="background"]),
+		html[chroma="dark-background-shifted-hues-320deg"] dd>img[src$="png"]:not([style*="background"]),
+		html[chroma="dark-background-shifted-hues-320deg"] dd>img[src$="svg"]:not([style*="background"]),
+		html[chroma="dark-background-shifted-hues-320deg"] p>img:not([style*="background"]) {
+			-webkit-filter:none;
+		}
+
+		html[chroma="dark-background-shifted-hues-320deg"] div[style*="background-image"],
+		html[chroma="dark-background-shifted-hues-320deg"] li[style*="background-image"] {
+			-webkit-filter: hue-rotate(220deg) contrast(125%) invert(100%);
+		}
+
+		html[chroma="dark-background-shifted-hues-320deg"] div[style*="background-image"]>*,
+		html[chroma="dark-background-shifted-hues-320deg"] li[style*="background-image"]>* {
+			-webkit-filter: invert(100%) hue-rotate(140deg) contrast(80%);
+		}
+		
+		/*chroma:dark-background-original-hues*/
+		html[chroma="dark-background-original-hues"]:not([nested-document=true]) {
+			-webkit-filter: invert(100%) hue-rotate(180deg) contrast(100%);
+		}
+		
+		html[chroma="dark-background-original-hues"] [style*="background"]:empty:not(input):not(textarea),
+		html[chroma="dark-background-original-hues"] :before[style*="background"],
+		html[chroma="dark-background-original-hues"] :after[style*="background"],
+		html[chroma="dark-background-original-hues"] img,
+		html[chroma="dark-background-original-hues"] video,
+		html[chroma="dark-background-original-hues"] object[type="application/x-shockwave-flash"],
+		html[chroma="dark-background-original-hues"] embed[type="application/x-shockwave-flash"],
+		html[chroma="dark-background-original-hues"] body[data-player-size=fullscreen] {
+			-webkit-filter: hue-rotate(180deg) contrast(100%) invert(100%);
+		}
+
+		html[chroma="dark-background-original-hues"] dt>img[src$="png"]:not([style*="background"]),
+		html[chroma="dark-background-original-hues"] dt>img[src$="svg"]:not([style*="background"]),
+		html[chroma="dark-background-original-hues"] dd>img[src$="png"]:not([style*="background"]),
+		html[chroma="dark-background-original-hues"] dd>img[src$="svg"]:not([style*="background"]),
+		html[chroma="dark-background-original-hues"] p>img:not([style*="background"]) {
+			-webkit-filter:none;
+		}
+
+		html[chroma="dark-background-original-hues"] div[style*="background-image"],
+		html[chroma="dark-background-original-hues"] li[style*="background-image"] {
+			-webkit-filter: hue-rotate(180deg) contrast(100%) invert(100%);
+		}
+
+		html[chroma="dark-background-original-hues"] div[style*="background-image"]>*,
+		html[chroma="dark-background-original-hues"] li[style*="background-image"]>* {
+			-webkit-filter: invert(100%) hue-rotate(180deg) contrast(100%);
+		}
+		
+		/*chroma:dark-background-inverted-hues*/
+		html[chroma="dark-background-inverted-hues"]:not([nested-document=true]) {
+			-webkit-filter: invert(100%) hue-rotate(0deg) contrast(100%);
+		}
+		
+		html[chroma="dark-background-inverted-hues"] [style*="background"]:empty:not(input):not(textarea),
+		html[chroma="dark-background-inverted-hues"] :before[style*="background"],
+		html[chroma="dark-background-inverted-hues"] :after[style*="background"],
+		html[chroma="dark-background-inverted-hues"] img,
+		html[chroma="dark-background-inverted-hues"] video,
+		html[chroma="dark-background-inverted-hues"] object[type="application/x-shockwave-flash"],
+		html[chroma="dark-background-inverted-hues"] embed[type="application/x-shockwave-flash"],
+		html[chroma="dark-background-inverted-hues"] body[data-player-size=fullscreen] {
+			-webkit-filter: hue-rotate(0deg) contrast(100%) invert(100%);
+		}
+
+		html[chroma="dark-background-inverted-hues"] dt>img[src$="png"]:not([style*="background"]),
+		html[chroma="dark-background-inverted-hues"] dt>img[src$="svg"]:not([style*="background"]),
+		html[chroma="dark-background-inverted-hues"] dd>img[src$="png"]:not([style*="background"]),
+		html[chroma="dark-background-inverted-hues"] dd>img[src$="svg"]:not([style*="background"]),
+		html[chroma="dark-background-inverted-hues"] p>img:not([style*="background"]) {
+			-webkit-filter:none;
+		}
+
+		html[chroma="dark-background-inverted-hues"] div[style*="background-image"],
+		html[chroma="dark-background-inverted-hues"] li[style*="background-image"] {
+			-webkit-filter: hue-rotate(0deg) contrast(100%) invert(100%);
+		}
+
+		html[chroma="dark-background-inverted-hues"] div[style*="background-image"]>*,
+		html[chroma="dark-background-inverted-hues"] li[style*="background-image"]>* {
+			-webkit-filter: invert(100%) hue-rotate(0deg) contrast(100%);
+		}
+		
+		/*chroma:original-hues-low-contrast*/
+		html[chroma="original-hues-low-contrast"]:not([nested-document=true]) {
+			-webkit-filter: invert(10%) hue-rotate(342deg) contrast(100%);
+		}
+		
+		html[chroma="original-hues-low-contrast"] [style*="background"]:empty:not(input):not(textarea),
+		html[chroma="original-hues-low-contrast"] :before[style*="background"],
+		html[chroma="original-hues-low-contrast"] :after[style*="background"],
+		html[chroma="original-hues-low-contrast"] img,
+		html[chroma="original-hues-low-contrast"] video,
+		html[chroma="original-hues-low-contrast"] object[type="application/x-shockwave-flash"],
+		html[chroma="original-hues-low-contrast"] embed[type="application/x-shockwave-flash"],
+		html[chroma="original-hues-low-contrast"] body[data-player-size=fullscreen] {
+			-webkit-filter: hue-rotate(18deg) contrast(175%) invert(10%);
+		}
+
+		html[chroma="original-hues-low-contrast"] dt>img[src$="png"]:not([style*="background"]),
+		html[chroma="original-hues-low-contrast"] dt>img[src$="svg"]:not([style*="background"]),
+		html[chroma="original-hues-low-contrast"] dd>img[src$="png"]:not([style*="background"]),
+		html[chroma="original-hues-low-contrast"] dd>img[src$="svg"]:not([style*="background"]),
+		html[chroma="original-hues-low-contrast"] p>img:not([style*="background"]) {
+			-webkit-filter:none;
+		}
+
+		html[chroma="original-hues-low-contrast"] div[style*="background-image"],
+		html[chroma="original-hues-low-contrast"] li[style*="background-image"] {
+			-webkit-filter: hue-rotate(18deg) contrast(175%) invert(10%);
+		}
+
+		html[chroma="original-hues-low-contrast"] div[style*="background-image"]>*,
+		html[chroma="original-hues-low-contrast"] li[style*="background-image"]>* {
+			-webkit-filter: invert(10%) hue-rotate(342deg) contrast(100%);
+		}
+		
+
+	html#print-preview, html#print-preview *{
+		-webkit-filter:none;
+	}
+}
+

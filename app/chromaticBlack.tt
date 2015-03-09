@@ -1,0 +1,208 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".css" #>
+<#@ include file="SaveOutput.tt" #>
+<#
+var chromas = new [] {
+	new Chroma {
+		Name = "dark-background-shifted-hues-320deg",
+		Description = "Dark background, shifted hues, low contrast.",
+		InvertApplyPercent = 100,
+		HueRotationDegrees = 320,
+		ContrastApplyPercent = 80
+	},
+	new Chroma {
+		Name = "dark-background-original-hues",
+		Description = "Dark background, original hues.",
+		InvertApplyPercent = 100,
+		HueRotationDegrees = 0,
+		ContrastApplyPercent = 100
+	},
+	new Chroma {
+		Name = "dark-background-inverted-hues",
+		Description = "Dark background, inverted hues.",
+		InvertApplyPercent = 100,
+		HueRotationDegrees = 180,
+		ContrastApplyPercent = 100
+	},
+	new OriginalHuesLowContrastChroma { 
+		Name = "original-hues-low-contrast",
+		Description = "Original hues, low contrast.",
+		InvertApplyPercent = 10,
+		HueRotationDegrees = 0,
+		ContrastApplyPercent = 100
+	},
+	new Chroma {
+		Name = "original-background-and-colors",
+		Description = "Original background and colors.",
+		InvertApplyPercent = 0,
+		HueRotationDegrees = 0,
+		ContrastApplyPercent = 100
+	}
+};
+#>
+
+<#
+/*----------------------------------------------------------------------------------------
+ * chromas.js
+ *-----------------------------------------------------------------------------------------*/
+#>
+var chromas = [
+<# foreach (var chroma in chromas)
+{
+#>
+	"<#= chroma.Name #>",
+<#
+}#>
+];
+<# SaveOutput("chromas.js"); #>
+
+
+<#
+/*----------------------------------------------------------------------------------------
+ * popup.html
+ *-----------------------------------------------------------------------------------------*/
+#>
+
+<!doctype html>
+<html>
+<head>
+<title>Chromatic Black Settings</title>
+<link rel="stylesheet" type="text/css" href="chromaticBlack.css"></link>
+<link rel="stylesheet" type="text/css" href="popup.css"></link>
+<script src="chromas.js"></script>
+<script src="common.js"></script>
+<script src="popup.js"></script>
+</head>
+
+<body>
+  <form id="subcontrols">
+    <fieldset>
+      <legend>Chroma for <strong id="site"></strong>: </legend>
+			<ul id="chromas">
+			<# foreach (var chroma in chromas)
+			{
+				var id = string.Format("chroma-{0}", chroma.Name);
+			#>
+				<li>
+					<input type="radio" name="chroma" id="<#= id #>" value="<#= chroma.Name #>">
+					<label for="<#= id #>"> <#= chroma.Description #></label>
+				</li>
+			<#
+			}#>
+			</ul>
+      <span id="defaultMarker"> [default]</span>
+			<input type="checkbox" id="always-use-default-chroma"/> 
+			<label for="always-use-default-chroma">Always use the default chroma for this site.</label>
+  </fieldset>
+  <button id="make_default">Make this chroma default</button>
+  </form>
+</body>
+</html>
+
+
+<# SaveOutput("popup.html"); 
+
+
+/*----------------------------------------------------------------------------------------
+ * chromaticBlack.css
+ *-----------------------------------------------------------------------------------------*/ 
+#>
+@media screen{
+	html:not([nested-document=true]), 
+	html:not([nested-document=true]) body {
+		min-height:100%;
+	}
+
+	html:not([chroma]){
+	  -webkit-filter: invert() hue-rotate(140deg) contrast(80%);
+	}
+	<# 
+	Action<Chroma> apply = chroma => {
+	  #>-webkit-filter: invert(<#=chroma.InvertApplyPercent #>%) hue-rotate(<#= chroma.HueRotationApplyDegrees #>deg) contrast(<#= chroma.ContrastApplyPercent #>%);<#
+	};
+
+	Action<Chroma> revert = chroma => {
+	  #>-webkit-filter: hue-rotate(<#= chroma.HueRotationRevertDegrees #>deg) contrast(<#= chroma.ContrastRevertPercent #>%) invert(<#=chroma.InvertRevertPercent #>%);<#
+	};
+
+	foreach (var chroma in chromas)
+	{
+		if (!chroma.RequiresCssFilter) continue;
+		#>
+		/*chroma:<#= chroma.Name #>*/
+		html[chroma="<#= chroma.Name #>"]:not([nested-document=true]) {
+			<# apply(chroma); #>
+		}
+		
+		html[chroma="<#= chroma.Name #>"] [style*="background"]:empty:not(input):not(textarea),
+		html[chroma="<#= chroma.Name #>"] :before[style*="background"],
+		html[chroma="<#= chroma.Name #>"] :after[style*="background"],
+		html[chroma="<#= chroma.Name #>"] img,
+		html[chroma="<#= chroma.Name #>"] video,
+		html[chroma="<#= chroma.Name #>"] object[type="application/x-shockwave-flash"],
+		html[chroma="<#= chroma.Name #>"] embed[type="application/x-shockwave-flash"],
+		html[chroma="<#= chroma.Name #>"] body[data-player-size=fullscreen] {
+			<# revert(chroma); #>
+		}
+
+		html[chroma="<#= chroma.Name #>"] dt>img[src$="png"]:not([style*="background"]),
+		html[chroma="<#= chroma.Name #>"] dt>img[src$="svg"]:not([style*="background"]),
+		html[chroma="<#= chroma.Name #>"] dd>img[src$="png"]:not([style*="background"]),
+		html[chroma="<#= chroma.Name #>"] dd>img[src$="svg"]:not([style*="background"]),
+		html[chroma="<#= chroma.Name #>"] p>img:not([style*="background"]) {
+			-webkit-filter:none;
+		}
+
+		html[chroma="<#= chroma.Name #>"] div[style*="background-image"],
+		html[chroma="<#= chroma.Name #>"] li[style*="background-image"] {
+			<# revert(chroma); #>
+		}
+
+		html[chroma="<#= chroma.Name #>"] div[style*="background-image"]>*,
+		html[chroma="<#= chroma.Name #>"] li[style*="background-image"]>* {
+			<# apply(chroma); #>
+		}
+		<#}#>
+
+	html#print-preview, html#print-preview *{
+		-webkit-filter:none;
+	}
+}
+
+<#+
+class Chroma 
+{
+	public string Name {get; set;}
+	public string Description {get; set;}
+	public virtual int InvertApplyPercent {get; set;}
+	public virtual int HueRotationDegrees {get; set;}
+	public virtual int ContrastApplyPercent {get; set;}
+	public virtual int HueRotationApplyDegrees { get { return NormalizeDegrees(HueRotationDegrees - 18 * InvertApplyPercent / 10); } }  /*180 * InvertApplyPercent / 100*/
+	public virtual int HueRotationRevertDegrees { get { return NormalizeDegrees(360 - HueRotationApplyDegrees); } }
+	public virtual int ContrastRevertPercent { get { return RevertPercent(ContrastApplyPercent); } } 
+	public virtual int InvertRevertPercent { get { return InvertApplyPercent; } }
+		   
+	protected int RevertPercent (int applyPercent) { return 100 * 100 / applyPercent; }
+	protected int NormalizeDegrees (int degrees) { return (360 + degrees)%360; }
+
+	public bool RequiresCssFilter
+	{ 
+		get 
+		{ 
+			return 
+				InvertApplyPercent != 0 || 
+				HueRotationApplyDegrees != 0 || 
+				ContrastApplyPercent != 100;
+		}
+	}
+}
+
+class OriginalHuesLowContrastChroma : Chroma
+{
+	public override int ContrastRevertPercent { get { return 175; } }
+}
+#>
