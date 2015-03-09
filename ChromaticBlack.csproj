@@ -59,14 +59,17 @@
     <Content Include="app\popup.js" />
     <Content Include="Properties\build\lib\Ionic.Zip.DLL" />
     <Content Include="Properties\build\lib\MSBuild.ExtensionPack.dll" />
-    <Content Include="screenshots\screenshot.png" />
-    <Content Include="screenshots\readme.txt" />
     <Content Include="app\chromaticBlack.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>chromaticBlack.css</LastGenOutput>
     </Content>
     <Content Include=".gitignore" />
     <Content Include=".gitattributes" />
+    <Content Include="screenshots\dark-background-inverted-hues.png" />
+    <Content Include="screenshots\dark-background-original-hues.png" />
+    <Content Include="screenshots\dark-background-shifted-hues.png" />
+    <Content Include="screenshots\original-background-and-colors.png" />
+    <Content Include="screenshots\original-hues-low-contrast.png" />
     <None Include="app\SaveOutput.tt">
       <LastGenOutput>SaveOutput.cs</LastGenOutput>
     </None>
