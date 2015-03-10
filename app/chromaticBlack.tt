@@ -143,6 +143,7 @@ var chromas = [
 		html[chroma="<#= chroma.Name #>"] :after[style*="background"],
 		html[chroma="<#= chroma.Name #>"] img,
 		html[chroma="<#= chroma.Name #>"] video,
+		html[chroma="<#= chroma.Name #>"] canvas,
 		html[chroma="<#= chroma.Name #>"] object[type="application/x-shockwave-flash"],
 		html[chroma="<#= chroma.Name #>"] embed[type="application/x-shockwave-flash"],
 		html[chroma="<#= chroma.Name #>"] body[data-player-size=fullscreen] {
