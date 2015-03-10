@@ -1,5 +1,9 @@
 (function () {
-  var lightness = 0;
+  function init() {
+    chrome.extension.sendRequest({
+      'init': true
+    }, onExtensionMessage);
+  };
 
   function onExtensionMessage(request) {
     var isNestedDocument = (window != window.top);
@@ -12,53 +16,56 @@
     if (isNestedDocument) {
       document.documentElement.setAttribute('nested-document', 'true');
     }
-  }
+  };
+
+  function getAverageTextColor() {
+    function getScaledArea(element) {
+      var rect, scale = 200;
+      if (!element) return 0;
+      rect = element.getBoundingClientRect();
+      if (!rect) return 0;
+      return rect.width / scale * rect.height / scale;
+    };
+
+    function getWeight(element) {
+      var iChild;
+      weight = getScaledArea(element);
+      for (iChild = 0; iChild < element.children.length; iChild++) {
+        weight -= getScaledArea(element.children[iChild]);
+      }
+    };
+
+    var color,
+      node, weight,
+      totalWeight = 0,
+      average = { red: 0, green: 0, blue: 0 }, red, green, blue,
+      walk = document.createTreeWalker(document, NodeFilter.SHOW_TEXT, null, false);
+    while (node = walk.nextNode()) {
+      weight = getWeight(node.parentElement);
+      if (weight <= 0) continue;
+      color = (window.getComputedStyle(node.parentElement).color).match(/\d+/g);
+      red = parseInt(color[0]);
+      green = parseInt(color[1]);
+      blue = parseInt(color[2]);
+      average.red += red * weight;
+      average.blue += blue * weight;
+      average.green += green * weight;
+      totalWeight += weight;
+    }
+    average.red /= totalWeight; average.blue /= totalWeight; average.green /= totalWeight;
+    return average;
+  };
+
+  var lightness = 0;
 
   chrome.extension.onRequest.addListener(onExtensionMessage);
-  function init() {
-    chrome.extension.sendRequest({
-      'init': true
-    }, onExtensionMessage);
-  }
 
   init();
 
   document.addEventListener("DOMContentLoaded", function (event) {
-    function getAverageTextColor() {
-      var color, average = { red: 0, green: 0, blue: 0 }, incrementRed, incrementGreen, incrementBlue;
-      var node, clientRects, iChild, rect, weight, colorScanNode,
-        totalWeight = 0,
-        walk = document.createTreeWalker(document, NodeFilter.SHOW_TEXT, null, false),
-        scaledArea = function (rect) {
-          if (!rect) return 0;
-          var scale = 200;
-          return rect.width / scale * rect.height / scale;
-        };
-      while (node = walk.nextNode()) {
-        clientRects = node.parentElement.getBoundingClientRect();
-        weight = scaledArea(rect);
-        for (iChild = 0; iChild < node.parentElement.children.length; iChild++) {
-          rect = node.parentElement.children[iChild].getBoundingClientRect();
-          weight -= scaledArea(rect);
-        }
-        if (weight <= 0) continue;
-        color = (window.getComputedStyle(node.parentElement).color).match(/\d+/g);
-        incrementRed = parseInt(color[0]);
-        incrementGreen = parseInt(color[1]);
-        incrementBlue = parseInt(color[2]);
-        average.red += incrementRed * weight;
-        average.blue += incrementBlue * weight;
-        average.green += incrementGreen * weight;
-        var max = Math.max(incrementRed, incrementGreen, incrementBlue);
-        totalWeight += weight;
-      }
-      average.red /= totalWeight; average.blue /= totalWeight; average.green /= totalWeight;
-      return average;
-    };
-
-    var averageTextColor = getAverageTextColor();
-    var max = Math.max(averageTextColor.red, averageTextColor.green, averageTextColor.blue),
-        min = Math.min(averageTextColor.red, averageTextColor.green, averageTextColor.blue);
+    var averageTextColor = getAverageTextColor(),
+      max = Math.max(averageTextColor.red, averageTextColor.green, averageTextColor.blue),
+      min = Math.min(averageTextColor.red, averageTextColor.green, averageTextColor.blue);
     lightness = (max + min) / 2;
 
     init();
