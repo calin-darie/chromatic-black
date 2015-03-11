@@ -28,11 +28,12 @@
     };
 
     function getWeight(element) {
-      var iChild;
+      var iChild, weight;
       weight = getScaledArea(element);
       for (iChild = 0; iChild < element.children.length; iChild++) {
         weight -= getScaledArea(element.children[iChild]);
       }
+      return weight;
     };
 
     var color,
