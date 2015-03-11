@@ -28,10 +28,15 @@
 		html[chroma="dark-background-shifted-hues-320deg"] dt>img[src$="png"]:not([style*="background"]),
 		html[chroma="dark-background-shifted-hues-320deg"] dt>img[src$="svg"]:not([style*="background"]),
 		html[chroma="dark-background-shifted-hues-320deg"] dd>img[src$="png"]:not([style*="background"]),
-		html[chroma="dark-background-shifted-hues-320deg"] dd>img[src$="svg"]:not([style*="background"]),
-		html[chroma="dark-background-shifted-hues-320deg"] p>img:not([style*="background"]) {
+		html[chroma="dark-background-shifted-hues-320deg"] dd>img[src$="svg"]:not([style*="background"]) {
 			-webkit-filter:none;
 		}
+		
+		
+		html[chroma="dark-background-shifted-hues-320deg"] p>img:not([style*="background"]) {
+			background-color: #EEE;
+		}
+		
 
 		html[chroma="dark-background-shifted-hues-320deg"] div[style*="background-image"],
 		html[chroma="dark-background-shifted-hues-320deg"] li[style*="background-image"] {
@@ -63,10 +68,15 @@
 		html[chroma="dark-background-original-hues"] dt>img[src$="png"]:not([style*="background"]),
 		html[chroma="dark-background-original-hues"] dt>img[src$="svg"]:not([style*="background"]),
 		html[chroma="dark-background-original-hues"] dd>img[src$="png"]:not([style*="background"]),
-		html[chroma="dark-background-original-hues"] dd>img[src$="svg"]:not([style*="background"]),
-		html[chroma="dark-background-original-hues"] p>img:not([style*="background"]) {
+		html[chroma="dark-background-original-hues"] dd>img[src$="svg"]:not([style*="background"]) {
 			-webkit-filter:none;
 		}
+		
+		
+		html[chroma="dark-background-original-hues"] p>img:not([style*="background"]) {
+			background-color: #EEE;
+		}
+		
 
 		html[chroma="dark-background-original-hues"] div[style*="background-image"],
 		html[chroma="dark-background-original-hues"] li[style*="background-image"] {
@@ -98,10 +108,15 @@
 		html[chroma="dark-background-inverted-hues"] dt>img[src$="png"]:not([style*="background"]),
 		html[chroma="dark-background-inverted-hues"] dt>img[src$="svg"]:not([style*="background"]),
 		html[chroma="dark-background-inverted-hues"] dd>img[src$="png"]:not([style*="background"]),
-		html[chroma="dark-background-inverted-hues"] dd>img[src$="svg"]:not([style*="background"]),
-		html[chroma="dark-background-inverted-hues"] p>img:not([style*="background"]) {
+		html[chroma="dark-background-inverted-hues"] dd>img[src$="svg"]:not([style*="background"]) {
 			-webkit-filter:none;
 		}
+		
+		
+		html[chroma="dark-background-inverted-hues"] p>img:not([style*="background"]) {
+			background-color: #EEE;
+		}
+		
 
 		html[chroma="dark-background-inverted-hues"] div[style*="background-image"],
 		html[chroma="dark-background-inverted-hues"] li[style*="background-image"] {
@@ -133,10 +148,11 @@
 		html[chroma="original-hues-low-contrast"] dt>img[src$="png"]:not([style*="background"]),
 		html[chroma="original-hues-low-contrast"] dt>img[src$="svg"]:not([style*="background"]),
 		html[chroma="original-hues-low-contrast"] dd>img[src$="png"]:not([style*="background"]),
-		html[chroma="original-hues-low-contrast"] dd>img[src$="svg"]:not([style*="background"]),
-		html[chroma="original-hues-low-contrast"] p>img:not([style*="background"]) {
+		html[chroma="original-hues-low-contrast"] dd>img[src$="svg"]:not([style*="background"]) {
 			-webkit-filter:none;
 		}
+		
+		
 
 		html[chroma="original-hues-low-contrast"] div[style*="background-image"],
 		html[chroma="original-hues-low-contrast"] li[style*="background-image"] {

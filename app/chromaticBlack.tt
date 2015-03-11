@@ -153,10 +153,18 @@ var chromas = [
 		html[chroma="<#= chroma.Name #>"] dt>img[src$="png"]:not([style*="background"]),
 		html[chroma="<#= chroma.Name #>"] dt>img[src$="svg"]:not([style*="background"]),
 		html[chroma="<#= chroma.Name #>"] dd>img[src$="png"]:not([style*="background"]),
-		html[chroma="<#= chroma.Name #>"] dd>img[src$="svg"]:not([style*="background"]),
-		html[chroma="<#= chroma.Name #>"] p>img:not([style*="background"]) {
+		html[chroma="<#= chroma.Name #>"] dd>img[src$="svg"]:not([style*="background"]) {
 			-webkit-filter:none;
 		}
+		
+		<#if (chroma.IsDark) 
+		{
+		#>
+		html[chroma="<#= chroma.Name #>"] p>img:not([style*="background"]) {
+			background-color: #EEE;
+		}
+		<#
+		}#>
 
 		html[chroma="<#= chroma.Name #>"] div[style*="background-image"],
 		html[chroma="<#= chroma.Name #>"] li[style*="background-image"] {
@@ -186,6 +194,7 @@ class Chroma
 	public virtual int HueRotationRevertDegrees { get { return NormalizeDegrees(360 - HueRotationApplyDegrees); } }
 	public virtual int ContrastRevertPercent { get { return RevertPercent(ContrastApplyPercent); } } 
 	public virtual int InvertRevertPercent { get { return InvertApplyPercent; } }
+	public virtual bool IsDark { get { return InvertApplyPercent > 50; } }
 		   
 	protected int RevertPercent (int applyPercent) { return 100 * 100 / applyPercent; }
 	protected int NormalizeDegrees (int degrees) { return (360 + degrees)%360; }

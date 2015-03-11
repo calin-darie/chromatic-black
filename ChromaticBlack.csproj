@@ -121,7 +121,6 @@
     <AppFileNameItem Include="$(OutputPath)$(AppFilename)" />
     <AppFolderItem Include="$(AppFolder)" />
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <LigerSharkChromeTargetsPath>$(BuildFolder)\ligershark.chrome.targets</LigerSharkChromeTargetsPath>
   </PropertyGroup>
